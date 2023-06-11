@@ -3,6 +3,15 @@ This is a template project for Go API projects. It's copied from this [yt video]
 
 ## Components
 
+### apiFunc `type func(http.ResponseWriter, *http.Request) error`
+
+`apiFunc` is a function signature for all API functions.
+
+Takes a standard input of a HTTP API function (`http.ResponseWriter` and `*http.Request`) and returns an `error`.
+
+
+
+
 ### WriteJSON `func (http.ResponseWriter,int,any) error`
 
 `WriteJSON` function assigns:
@@ -20,3 +29,5 @@ func writeJSON(w http.ResponseWriter, status int, v any) error {
 	return json.NewEncoder(w).Encode(v)
 }
 ```
+
+### MakeHTTPHandler
