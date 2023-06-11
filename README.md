@@ -35,8 +35,9 @@ func writeJSON(w http.ResponseWriter, status int, v any) error {
 }
 ```
 
-### MakeHTTPHandler
+### MakeHTTPHandler `makeHTTPHandler(apiFunc) http.HandlerFunc`
 
+`MakeHTTPHandler` is creating an implementation for all functions of type `apiFunc`
 
 ```
 func makeHTTPHandler(f apiFunc) http.HandlerFunc {
