@@ -1,6 +1,9 @@
 # go-api-boiler
 This is a template project for Go API projects. It's copied from this [yt video](https://www.youtube.com/watch?v=CJfE9kD_i7Q)
 
+Below you will find my attempt of explaining what the functions are doing (if you see an error or a misinterpretation, feel free to create an issue on git).
+
+
 ## Components
 
 ### apiFunc `type func(http.ResponseWriter, *http.Request) error`
@@ -33,3 +36,18 @@ func writeJSON(w http.ResponseWriter, status int, v any) error {
 ```
 
 ### MakeHTTPHandler
+
+
+```
+func makeHTTPHandler(f apiFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if err := f(w, r); err != nil { 
+			if e, ok := err.(apiError); ok {
+				writeJSON(w, e.Status, e)
+				return
+			}
+			writeJSON(w, http.StatusInternalServerError, apiError{Err: "internal server error"})
+		}
+	}
+}
+```
