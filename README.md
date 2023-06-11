@@ -9,7 +9,9 @@ This is a template project for Go API projects. It's copied from this [yt video]
 
 Takes a standard input of a HTTP API function (`http.ResponseWriter` and `*http.Request`) and returns an `error`.
 
-
+```
+type apiFunc func(http.ResponseWriter, *http.Request) error
+```
 
 
 ### WriteJSON `func (http.ResponseWriter,int,any) error`
